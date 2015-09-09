@@ -24,7 +24,7 @@
     ['animationstart', 'webkitAnimationStart', 'MSAnimationStart', 'oAnimationStart'],
 
     function(event) {
-      reutrn event + '.' + NAMESPACE;
+      return event + '.' + NAMESPACE;
     }
 
   ).join(' ');
@@ -33,7 +33,7 @@
     ['animationend', 'webkitAnimationEnd', 'MSAnimationEnd', 'oAnimationEnd'],
 
     function(event) {
-      reutrn event + '.' + NAMESPACE;
+      return event + '.' + NAMESPACE;
     }
 
   ).join(' ');
@@ -51,7 +51,7 @@
     closing: 'closing',
     closed: 'closed',
     opening: 'opening',
-    opened: 'opned'
+    opened: 'opened'
   };
 
   var REASONS = {
@@ -110,9 +110,9 @@
         $elem.css('-webkit-animation-iteration-count') ||
         '1';
 
-    duration = duration.spit(', ');
-    delay = delay.spit(', ');
-    iteration = iteration.spit(', ');
+    duration = duration.split(', ');
+    delay = delay.split(', ');
+    iterations = iterations.split(', ');
 
     var num, max = Number.NEGATIVE_INFINITY;
 
@@ -130,14 +130,14 @@
   function unbindEvents(modal, event) {
     var $modalElems = ['$bg', '$overlay', '$wrapper', '$modal'];
     $.each($modalElems, function(i, elem) {
-      instance[elem].off(event);
+      modal[elem].off(event);
     });
   }
 
   function bindEvents(modal, event, callback) {
     var $modalElems = ['$bg', '$overlay', '$wrapper', '$modal'];
     $.each($modalElems, function(i, elem) {
-      instance[elem].on(event, callback);
+      modal[elem].on(event, callback);
     });
   }
 
@@ -209,9 +209,9 @@
     modal.$wrapper.removeClass(stateColl).addClass(newState);
     modal.$modal.removeClass(stateColl).addClass(newState);
 
-    instance.state = state;
+    modal.state = state;
 
-    !silent && instance.$modal.trigger({
+    !silent && modal.$modal.trigger({
       type: state,
       reason: reason
     }, [{ reason: reason }])
@@ -308,7 +308,7 @@
     modalize.$overlay = $('.' + setNamespace('overlay'));
 
     if (!modalize.$overlay.length) {
-      modalize.$overlay = $('div').addClass(setNamespace('overlay') + ' ' + setNamespace('is', STATES.closed)).hide();
+      modalize.$overlay = $('<div>').addClass(setNamespace('overlay') + ' ' + setNamespace('is', STATES.closed)).hide();
       $body.append(modalize.$overlay);
     }
 
@@ -316,17 +316,17 @@
 
     modalize.$modal = $modal.addClass(NAMESPACE + ' ' + setNamespace('is-initialized') + ' ' + modalize.settings.mods + ' ' + setNamespace('is', STATES.closed)).attr('tabindex', '-1');
 
-    modalize.$wrapper = $('div').addClass(setNamespace('wrapper') + ' ' + modalize.settings.mods + ' ' + setNamespace('is', STATES.closed)).hide().appemd(modalize.$modal);
+    modalize.$wrapper = $('<div>').addClass(setNamespace('wrapper') + ' ' + modalize.settings.mods + ' ' + setNamespace('is', STATES.closed)).hide().append(modalize.$modal);
 
     $body.append(modalize.$wrapper);
 
-    modalize.$wrapper.on('click.' + NAMESPACE, '[data-' + PLUGIN_NAME + '-action="close"]'m function(e) {
+    modalize.$wrapper.on('click.' + NAMESPACE, '[data-' + PLUGIN_NAME + '-action="close"]', function(e) {
       e.preventDefault();
 
       modalize.close();
     });
 
-    modalize.$wrapper.on('click.' + NAMESPACE, '[data-' + PLUGIN_NAME + '-action="cancel"]'m function(e) {
+    modalize.$wrapper.on('click.' + NAMESPACE, '[data-' + PLUGIN_NAME + '-action="cancel"]', function(e) {
       e.preventDefault();
 
       modalize.$modal.trigger(REASONS.CANCEL);
@@ -336,7 +336,7 @@
       }
     });
 
-    modalize.$wrapper.on('click.' + NAMESPACE, '[data-' + PLUGIN_NAME + '-action="confirm"]'m function(e) {
+    modalize.$wrapper.on('click.' + NAMESPACE, '[data-' + PLUGIN_NAME + '-action="confirm"]', function(e) {
       e.preventDefault();
 
       modalize.$modal.trigger(REASONS.CONFIRM);
@@ -368,7 +368,7 @@
 
     id = modalize.$modal.attr('data-' + PLUGIN_NAME + '-id');
 
-    if (id && modalize.settigs.trackUrlHash) {
+    if (id && modalize.settings.trackUrlHash) {
       scrollTop = $(window).scrollTop();
       location.hash = id;
     }
@@ -442,7 +442,7 @@
     delete lookup[this.index];
 
     instances = $.grep(lookup, function(modal) {
-      reutrn !!modal;
+      return !!modal;
     }).length;
 
     if (instances === 0) {
