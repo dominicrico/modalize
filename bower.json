@@ -9,7 +9,7 @@
   "main": [
     "dist/modalize.js",
     "dist/modalize.css",
-    "dist/modalize-default-theme.css",
+    "dist/modalize-default-theme.css"
   ],
   "keywords": [
     "modal",
@@ -35,5 +35,14 @@
     "Gruntfile.js",
     "*.md",
     "package.json"
-  ]
+  ],
+  "dependencies": {
+    "jquery": "*"
+  },
+  "devDependencies": {
+    "jquery": "jquery#^1.11.3",
+    "jquery2": "jquery#^2.1.4",
+    "qunit": "^1.19.0",
+    "zepto": "^1.1.6"
+  }
 }
