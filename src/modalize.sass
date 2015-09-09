@@ -1,0 +1,162 @@
+html
+  &.modalize-locked
+    overflow: hidden
+
+.modalize, [data-modalize-id]
+  display: none
+
+.modalize
+  position: relative
+  text-size-adjust: 100%
+  box-sizing: border-box
+  width: 100%
+  margin-bottom: 10px
+  padding: 35px
+  transform: translate3d(0,0,0)
+  color: #2b2e38
+  background: #fff
+  vertical-align: middle
+  &:focus
+    outline: none
+
+  &.modalize-is-opening
+    animation: modalize-opening .6s
+  &.modalize-is-closing
+    animation: modalize-closing .6s
+
+  &-overlay, &-wrapper
+    backface-visibility: hidden
+
+  &-overlay
+    position: fixed
+    z-index: 9999
+    top: -5000px
+    right: -5000px
+    bottom: -5000px
+    left: -5000px
+    display: none
+    background: #999
+    background: rgba(0, 0, 0, .7)
+    &.modalize-is-opening
+      animation: modalize-overlay-opening .6s
+    &.modalize-is-closing
+      animation: modalize-overlay-closing .6s
+
+  &-wrapper
+    position: fixed
+    z-index: 10000
+    top: 0
+    right: 0
+    bottom: 0
+    left: 0
+    display: none
+    overflow: auto
+    text-align: center
+    -webkit-overflow-scrolling: touch
+    padding: 10px 10px 0
+
+    &:after
+      display: inline-block
+      height: 100%
+      margin-left: -0.05em
+      vertical-align: middle
+      content: ''
+
+  &-is-initialized
+    display: inline-block
+
+  &-cancel, &-confirm
+    font: inherit
+    min-width: 110px
+    padding: 12px 0
+    transition: background .2s
+    text-align: center
+    display: inline-block
+    vertical-align: middle
+    color: #fff
+
+  &-cancel, &-confirm, &-close
+    border: 0
+    overflow: visible
+    margin: 0
+    cursor: pointer
+    text-decoration: none
+    outline: 0
+    &::moz-focus-inner
+      padding: 0
+      border: 0
+
+  &-close
+    height: 35px
+    padding: 0
+    transition: color .2s
+    color: #95979c
+    background: 0 0
+
+    &:before
+      font:
+        family: Aria, "Helvetica CY", "Nimbus Sans L", sans-serif !important
+        size: 25px
+      line-height: 35px
+      content: '\00d7'
+      text-align: center
+
+  &-close, &-close:before
+    position: absolute
+    top: 0
+    left: 0
+    display: block
+    width: 35px
+
+  &-cancel
+    background: #e57373
+
+  &-confirm
+    background: #81c784
+
+  &-bg
+    &.modalize-is-
+      &opening, &opened
+        filter: blur(3px)
+
+  &-overlay
+    &.modalize-is-
+      &opening, &opened
+        animation-fill-mode: forwards
+
+
+  &.modalize-is-
+    &opening, &opened
+      animation-fill-mode: forwards
+
+@keyframes modalize-opening
+  from
+    transform: translateY(-1000px)
+    opacity: 0
+  to
+    transform: translateY(0)
+    opacity: 1
+
+@keyframes modalize-closing
+  from
+    transform: translateY(0)
+    opacity: 1
+  to
+    transform: translateY(-1000px)
+    opacity: 0
+
+@keyframes modalize-overlay-opening
+  from
+    opacity: 0
+  to
+    opacity: 1
+
+@keyframes modalize-overlay-closing
+  from
+    opacity: 1
+  to
+    opacity: 0
+
+@media only screen and (min-width: 641px)
+  .modalize
+    max-width: 700px

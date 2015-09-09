@@ -1,3 +1,12 @@
+/*
+ * Modalize - v0.0.1
+ * Lightweight, responsive, fast, fully customizable modal plugin. Call your modals by url hash.
+ * https://github.com/dominicrico/modalize
+ *
+ * Made by Dominic Rico-Gomez
+ * Under MIT License
+ */
+
 !(function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     define(['jquery'], function($) {
