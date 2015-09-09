@@ -1,0 +1,42 @@
+{
+  "name": "modalize",
+  "version": "0.0.1",
+  "description": "Lightweight, responsive, fast, fully customizable modal plugin. Call your modals by url hash.",
+  "main": "dist/modalize.js",
+  "directories": {
+    "example": "examples",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dominicrico/modalize.git"
+  },
+  "keywords": [
+    "modal",
+    "plugin",
+    "responsive",
+    "popup",
+    "window",
+    "dialog",
+    "lightbox",
+    "ui",
+    "popin"
+  ],
+  "author": {
+    "name": "Dominic Rico-Gomez",
+    "email": "hello@coderocket.me",
+    "url": "https://github.com/dominicrico"
+  },
+  "homepage": "http://dominicrico.github.io/modalize/",
+  "bugs": {
+    url: "https://github.com/dominicrico/modalize/issues"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dominicrico/modalize/issues"
+  },
+  "homepage": "https://github.com/dominicrico/modalize"
+}
