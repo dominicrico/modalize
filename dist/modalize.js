@@ -158,7 +158,7 @@
 
     $.each($tabs, function(i, elem) {
       $elem = $(elem);
-
+      $elem.css('width', (100 / $tabs.length) + '%');
       if($elem.data(PLUGIN_NAME + '-show') !== undefined) {
         $elem.on('click', function(e){
           e.preventDefault();
