@@ -225,14 +225,6 @@
 
   }
 
-  function checkTabs(modal) {
-
-  }
-
-  function checkAjaxContent(modal) {
-
-  }
-
   function changeState(modal, state, silent, reason) {
     var newState = setNamespace('is', state),
         stateColl = [
@@ -425,13 +417,17 @@
     modalize.$modal.focus();
 
     if (modalize.$modal.find('.' + PLUGIN_NAME + '-ajax').length) {
+
+      modalize.$modal.find('.' + PLUGIN_NAME + '-ajax').empty();
+
       url = modalize.$modal.find('.' + PLUGIN_NAME + '-ajax').data(PLUGIN_NAME + '-ajax');
+
       $.ajax({
         async: false,
         method: 'GET',
         url: url,
         success: function(data){
-          modalize.$modal.find('.' + PLUGIN_NAME + '-ajax').html(data);
+          modalize.$modal.find('.' + PLUGIN_NAME + '-ajax').html(data.output);
         },
         error: function(err) {
           modalize.$modal.find('.' + PLUGIN_NAME + '-ajax').html('<span>Ooops... Something went completly wrong! Sorry!</span>');
