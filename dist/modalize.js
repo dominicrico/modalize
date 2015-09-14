@@ -344,6 +344,27 @@
     }
   }
 
+  function optionParse(options){
+    var obj = {}, arr, len, val, i;
+
+    options = options.replace(/\s*:\s*/g, ':').replace(/\s*,\s*/g, ',');
+
+    arr = options.split(',');
+
+    for(i = 0, len = arr.length; i < len; i++) {
+      arr[i] = arr[i].split(':');
+      val = arr[i][1];
+
+      if(typeof val === 'string' || val instanceof String) {
+        val = !isNaN(val) ? +val : val;
+      }
+
+      obj[arr[i][0]] = val;
+    }
+
+    return obj;
+  }
+
   function modalize($modal, options) {
     var $body = $(document.body),
         modalize = this;
@@ -587,10 +608,16 @@
 
     $(window).on('hashchange.' + NAMESPACE, hashChange);
 
-    $document.find('.' + NAMESPACE).each(function(i, container) {
-      var $container = $(container);
+    $document.find('.' + NAMESPACE).each(function(i, container){
+      var $container = $(container), options = $container.data(PLUGIN_NAME + '-options');
 
-      $container[PLUGIN_NAME]();
+      if (!options) {
+        options = {};
+      } else if (typeof options === 'string' || options instanceof String) {
+        options = optionParse(options);
+      }
+
+      $container[PLUGIN_NAME](options);
     });
 
   });
