@@ -424,13 +424,18 @@
 
       modalize.$modal.find('.' + PLUGIN_NAME + '-ajax').empty();
 
-      url = modalize.$modal.find('.' + PLUGIN_NAME + '-ajax').data(PLUGIN_NAME + '-ajax');
+      url = modalize.$modal.find('.' + PLUGIN_NAME + '-ajax').attr('data-' + PLUGIN_NAME + '-ajax');
 
       $.ajax({
         async: false,
         method: 'GET',
         url: url,
+        beforeSend: function(){
+          modalize.$modal.find('.' + PLUGIN_NAME + '-confirm, .' + PLUGIN_NAME + '-cancel').hide();
+          modalize.$modal.find('.' + PLUGIN_NAME + '-ajax').html('<h2><i class="icon-cycle icon-spin"></i> Loading data...</h2>');
+        },
         success: function(data){
+          modalize.$modal.find('.' + PLUGIN_NAME + '-confirm, .' + PLUGIN_NAME + '-cancel').show();
           modalize.$modal.find('.' + PLUGIN_NAME + '-ajax').html(data.output);
         },
         error: function(err) {
