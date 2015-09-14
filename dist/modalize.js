@@ -356,7 +356,7 @@
       val = arr[i][1];
 
       if(typeof val === 'string' || val instanceof String) {
-        val = !isNaN(val) ? +val : val;
+        val = !isNaN(val) ? +val : ((val == 'false') ? false : true);
       }
 
       obj[arr[i][0]] = val;
