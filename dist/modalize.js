@@ -166,6 +166,8 @@
 
           modal.$modal.find('.' + PLUGIN_NAME + '-tabs .' + PLUGIN_NAME + '-tab').hide();
           modal.$modal.find('.' + PLUGIN_NAME + '-tabs [data-' + PLUGIN_NAME + '-tab=' + $target.data(PLUGIN_NAME + '-show') + ']').show();
+
+          modal.tab = $target.data(PLUGIN_NAME + '-show');
         });
       }
     });
@@ -347,6 +349,7 @@
     modalize.settings = $.extend({}, DEFAULTS, options);
     modalize.index = $[PLUGIN_NAME].lookup.push(modalize) -1;
     modalize.state = STATES.closed;
+    modalize.tab = undefined;
 
     modalize.$overlay = $('.' + setNamespace('overlay'));
 
@@ -508,11 +511,15 @@
     );
   };
 
-  modalize.currentState = function() {
+  modalize.prototype.currentState = function() {
     return this.state;
   };
 
-  modalize.destroy = function() {
+  modalize.prototype.currentTab = function() {
+    return this.tab;
+  };
+
+  modalize.prototype.destroy = function() {
     var lookup = $[PLUGIN_NAME].lookup,
         instances;
 
