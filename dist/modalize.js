@@ -156,6 +156,8 @@
     modal.$modal.find('.' + PLUGIN_NAME + '-tabs [data-' + PLUGIN_NAME + '-tab]').hide()
     modal.$modal.find('.' + PLUGIN_NAME + '-tabs [data-' + PLUGIN_NAME + '-tab]:first').show()
 
+    modal.tab = modal.$modal.find('.' + PLUGIN_NAME + '-tabs ul li:first').attr('[data-' + PLUGIN_NAME + '-show]');
+
     $.each($tabs, function(i, elem) {
       $elem = $(elem);
       $elem.css('width', (100 / $tabs.length) + '%');
