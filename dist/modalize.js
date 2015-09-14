@@ -171,6 +171,19 @@
     });
   }
 
+  function offToggleTabs(modal) {
+    var $tabs = modal.$modal.find('.' + PLUGIN_NAME + '-tabs ul li'), $elem;
+
+    modal.$modal.find('.' + PLUGIN_NAME + '-tabs [data-' + PLUGIN_NAME + '-tab]').hide()
+    $.each($tabs, function(i, elem) {
+      $elem = $(elem);
+
+      if($elem.data(PLUGIN_NAME + '-show') !== undefined) {
+        $elem.off('click');
+      }
+    });
+  }
+
   function getScrollBar() {
     if ($(document.body).height() <= $(window).height()) {
       return 0;
@@ -466,6 +479,14 @@
     modalize.$overlay.addClass(modalize.settings.mods).show();
     modalize.$wrapper.show().scrollTop();
     modalize.$modal.focus();
+
+    if (modalize.$modal.find('.' + PLUGIN_NAME + '-ajax').length) {
+      modalize.$modal.find('.' + PLUGIN_NAME + '-ajax').empty();
+    }
+
+    if (modalize.$modal.find('.' + PLUGIN_NAME + '-tabs').length) {
+      offToggleTabs(modalize);
+    }
 
     aniSync(
       function(){
