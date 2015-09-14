@@ -427,7 +427,6 @@
       url = modalize.$modal.find('.' + PLUGIN_NAME + '-ajax').attr('data-' + PLUGIN_NAME + '-ajax');
 
       $.ajax({
-        async: false,
         method: 'GET',
         url: url,
         beforeSend: function(){
