@@ -155,6 +155,7 @@
 
     modal.$modal.find('.' + PLUGIN_NAME + '-tabs [data-' + PLUGIN_NAME + '-tab]').hide()
     modal.$modal.find('.' + PLUGIN_NAME + '-tabs [data-' + PLUGIN_NAME + '-tab]:first').show()
+    modal.$modal.find('.' + PLUGIN_NAME + '-tabs [data-' + PLUGIN_NAME + '-show]:first').addClass('active');
 
     modal.tab = modal.$modal.find('.' + PLUGIN_NAME + '-tabs ul li:first').attr('[data-' + PLUGIN_NAME + '-show]');
 
@@ -166,8 +167,11 @@
           e.preventDefault();
           var $target = $(e.currentTarget);
 
+          modal.$modal.find('.' + PLUGIN_NAME + '-tabs .modalize-tab-select').removeClass('active');
           modal.$modal.find('.' + PLUGIN_NAME + '-tabs .' + PLUGIN_NAME + '-tab').hide();
           modal.$modal.find('.' + PLUGIN_NAME + '-tabs [data-' + PLUGIN_NAME + '-tab=' + $target.data(PLUGIN_NAME + '-show') + ']').show();
+
+          $target.addClass('active');
 
           modal.tab = $target.data(PLUGIN_NAME + '-show');
         });
