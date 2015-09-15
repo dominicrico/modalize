@@ -475,6 +475,9 @@
         success: function(data){
           modalize.$modal.find('.' + PLUGIN_NAME + '-confirm, .' + PLUGIN_NAME + '-cancel').show();
           modalize.$modal.find('.' + PLUGIN_NAME + '-ajax').html(data.output);
+          if (modalize.$modal.find('.' + PLUGIN_NAME + '-tabs').length) {
+            toggleTabs(modalize);
+          }
         },
         error: function(err) {
           modalize.$modal.find('.' + PLUGIN_NAME + '-ajax').html('<span>Ooops... Something went completly wrong! Sorry!</span>');
