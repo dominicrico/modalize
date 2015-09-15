@@ -142,7 +142,7 @@
   }
 
   function toggleTabs(modal) {
-    var $tabs = modal.$modal.find('.' + PLUGIN_NAME + '-tabs ul li'), $elem;
+    var $tabs = modal.$modal.find('.' + PLUGIN_NAME + '-tabs > ul li'), $elem;
 
     modal.$modal.find('.' + PLUGIN_NAME + '-tabs [data-' + PLUGIN_NAME + '-tab]').hide()
     modal.$modal.find('.' + PLUGIN_NAME + '-tabs [data-' + PLUGIN_NAME + '-tab]:first').show()
