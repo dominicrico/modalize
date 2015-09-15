@@ -153,7 +153,7 @@
       $elem = $(elem);
       $elem.css('width', (100 / $tabs.length) + '%');
       if($elem.data(PLUGIN_NAME + '-show') !== undefined) {
-        $elem.on('click', function(e){
+        $elem.on('click.' + NAMESPACE, function(e){
           e.preventDefault();
           var $target = $(e.currentTarget);
 
@@ -174,7 +174,7 @@
       $elem = $(elem);
 
       if($elem.data(PLUGIN_NAME + '-show') !== undefined) {
-        $elem.off('click');
+        $elem.off('click.' + NAMESPACE);
       }
     });
   }
