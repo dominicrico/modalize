@@ -142,6 +142,11 @@
   }
 
   function toggleTabs(modal) {
+
+    if (modal.state === STATES.opening || modal.state === STATES.closing) {
+      return;
+    }
+
     var $tabs = modal.$modal.find('.' + PLUGIN_NAME + '-tabs > ul li'), $elem;
 
     modal.$modal.find('.' + PLUGIN_NAME + '-tabs [data-' + PLUGIN_NAME + '-tab]').hide()
